@@ -23,6 +23,45 @@
             color: #1e293b;
             scroll-behavior: smooth;
         }
+        .about-me{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2%;
+        }
+        .about-me > div{
+            margin: 2%;
+            font-size: 170%;
+            border-radius: 20px;
+        }
+        .about-me > div a{
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 80%;
+        }
+        .about-me .text{
+            background-color: White;
+            padding: 20px;
+        }
+        .tools{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .tools > .name-tool{
+            background-color: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 1%;
+            width: 260px;
+            height: 300px;
+        }
+        .tools > .name-tool > img{
+            width: 100px;
+            height: 100px;
+        }
 
         /* Hero Section */
         .hero {
@@ -59,6 +98,11 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: 0.3s;
             height: 100%;
+        }
+        .feature-card h4 {
+            hyphens: auto;
+            word-wrap : break-word;
+            overflow-wrap: break-word;
         }
 
         .feature-card:hover {
@@ -111,7 +155,9 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#features">Возможности</a></li>
                     <li class="nav-item"><a class="nav-link" href="#stats">Статистика</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tools-container">Инструменты</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Контакты</a></li>
+                    
                 </ul>
             </div>
         </div>
@@ -167,16 +213,37 @@
         </div>
     </section>
 
+    <section class="about-me">
+        <div class="text">
+            <h2>Adamov Ilyas</h2>
+            <p>Hi me name is Ilyas and i am a student of MU <br>right now you can read more about me here.</p>
+            <ul>
+                <li><a href="https://www.instagram.com/ilyas_c137/">Link to my Instagram</a></li>
+                <li><a href="https://www.instagram.com/jas_daryn_mektebi/">Link to my job</a></li>
+                <li><a href="https://www.instagram.com/mu_gumanitarlyq_gylymdar/">Link to my university</a></li>
+            </ul>
+        </div>
+        <div>
+            <img src="https://avatars.githubusercontent.com/u/122380441?s=400&u=0c8e5b1a9c7d2f1e4a3b9c8e5f6a7b8c9d0e1f&v=4" alt="Adamov Ilyas" class="profile-pic">
+        </div>
+    </section>
+
+    <section class="tools" id="tools-container">
+
+    </section>
+
+
+
     <section id="stats" class="stats-section">
         <div class="container text-center">
             <div class="row">
                 <div class="col-md-4">
                     <h2 class="fw-bold counter" data-target="45">0</h2>
-                    <p>Рост эффективности обучения (%)</p>
+                    <p>Рост эффективности обучения (45%)</p>
                 </div>
                 <div class="col-md-4">
                     <h2 class="fw-bold counter" data-target="24">0</h2>
-                    <p>Доступность поддержки (часов в сутки)</p>
+                    <p>Доступность поддержки (24 часа в сутки)</p>
                 </div>
                 <div class="col-md-4">
                     <h2 class="fw-bold counter" data-target="100">0</h2>
@@ -194,7 +261,7 @@
                 <a href="#" class="text-white fs-4"><i class="fab fa-github"></i></a>
             </div>
             <hr class="my-4 opacity-25">
-            <p class="small text-muted">© 2024 AI Education Project. Сделано с помощью Bootstrap & JS</p>
+            
         </div>
     </footer>
 
@@ -250,6 +317,28 @@
 
         // Первичный вызов анимации
         reveal();
+        
+
+        // 1. Создаем массив данных (объектов)
+        const aiTools = [
+            { name: "n8n", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzFcN7U24poNwgbJ98xlP6oWEhUG_4yC936g&s", desc: "Идеальный выбор для автономных агентов, интегрированных в бизнес-процессы." },
+            { name: "Gumloop", img: "https://cdn.prod.website-files.com/67ca0826d5c9a51216d057d1/67dda7f7099800df94d87deb_gumloop_logo_transparent.png", desc: "Визуальный холст для соединения нейросетей, поиска и таблиц." },
+            { name: "LangChain", img: "https://docs.langflow.org/img/langflow-icon-black-transparent.svg", desc: "Визуальные интерфейсы для разработки схем работы агентов и запуска через API." },
+            { name: "Lindy", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFpsPQxfdTtZyt3Dx3Qbez56VLDUGz84m15A&s", desc: "Платформа для создания цифровых сотрудников: почта, календарь, Slack." },
+            { name: "Relevance AI", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRcBOfOXPbZfJcL8VfWKSvBcAWvYEPrSLyxw&s", desc: "Создание цифрового штата для массового анализа данных и продаж." },
+            { name: "Microsoft AutoGen", img: "https://media.githubusercontent.com/media/microsoft/autogen/main/python/packages/autogen-studio/frontend/src/images/icon.png", desc: "База для создания многоагентных систем, общающихся между собой." }
+        ];
+
+        // 2. Находим контейнер и заполняем его
+        const toolsContainer = document.getElementById('tools-container');
+        
+        toolsContainer.innerHTML = aiTools.map(tool => `
+            <div class="name-tool">
+                <img src="${tool.img}" alt="${tool.name}"> 
+                <h2>${tool.name}</h2>
+                <p>${tool.desc}</p>
+            </div>
+        `).join('');
     </script>
 </body>
 </html>
