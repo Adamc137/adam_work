@@ -1,0 +1,124 @@
+{% extends "main.html" %}
+
+{% block title %} Математический Инжиниринг & Анализ {% endblock %}
+
+{% block content %}
+<main>
+    <aside class="aside">
+        <div class="sidebar-header">
+            <h2 class="fw-bold"><i class="fa-solid fa-calculator me-2"></i>Math Engine</h2>
+            <p class="small opacity-75">Курс прикладной математики и логики для разработчиков.</p>
+        </div>
+        <hr>
+        <ul id="lesson-list" class="list-unstyled">
+            </ul>
+    </aside>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="reveal active mb-5">
+                <h1 class="display-5 fw-bold text-dark">Математическое мышление в IT</h1>
+                <p class="lead text-muted">От дискретной математики до сложных алгоритмов оптимизации.</p>
+            </div>
+
+            <div class="feature-card mb-5">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Math for Engineers" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="video-caption mt-3"><i class="fa-solid fa-play-circle me-2"></i>Вводная лекция: Почему инженеру нужна математика?</p>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-6">
+                    <div class="feature-card shadow-sm">
+                        <div class="icon-box"><i class="fa-solid fa-square-root-variable"></i></div>
+                        <h4>Теория и логика</h4>
+                        <p>Изучаем основы булевой алгебры, теорию графов и комбинаторику, которые лежат в основе каждого эффективного алгоритма.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card shadow-sm">
+                        <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                        <h4>Анализ данных</h4>
+                        <p>Практические задания по статистике и линейной алгебре для создания моделей машинного обучения на Python.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-block p-5 text-center text-white shadow-lg" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 20px;">
+                <h2 class="fw-bold">Готовы проверить свои знания?</h2>
+                <p class="mb-4">Перейдите в интерактивный тренажер, чтобы решить первую математическую задачу на Python.</p>
+                <a href="/check_code" class="btn btn-light btn-lg px-5 py-3 fw-bold shadow">Начать практику <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<style>
+    /* Фикс для Aside, чтобы он не перекрывал контент */
+    .aside {
+        width: var(--sb-width);
+        position: fixed;
+        left: 0;
+        top: 56px; /* высота navbar */
+        bottom: 0;
+        background-color: #1e1b4b; /* Темно-синий для математики */
+        padding: 25px;
+        overflow-y: auto;
+        z-index: 100;
+    }
+
+    #lesson-list li {
+        margin-bottom: 10px;
+        transition: 0.3s;
+    }
+
+    #lesson-list li a {
+        color: rgba(255,255,255,0.8);
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    #lesson-list li:hover a {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateX(5px);
+    }
+
+    /* Адаптивность контента */
+    .content {
+        margin-left: var(--sb-width);
+        padding: 40px;
+        background-color: #f8fafc;
+        min-height: 100vh;
+    }
+
+    @media (max-width: 992px) {
+        .aside { width: 80px; padding: 10px; }
+        .aside p, .aside h2, .aside span { display: none; }
+        .content { margin-left: 80px; }
+    }
+</style>
+
+<script>
+    const mathLessons = [
+        {name:"1. Дискретная математика", link:"/course/math-1"},
+        {name:"2. Линейная алгебра", link:"/course/math-2"},
+        {name:"3. Математический анализ", link:"/course/math-3"},
+        {name:"4. Теория вероятностей", link:"/course/math-4"},
+        {name:"5. Статистика в Python", link:"/course/math-5"},
+    ];
+    
+    const lessonContainer = document.getElementById("lesson-list");
+
+    lessonContainer.innerHTML = mathLessons.map(lesson =>
+        `<li><a href="${lesson.link}"><i class="fa-solid fa-chevron-right me-2 small"></i>${lesson.name}</a></li>`
+    ).join("");
+</script>
+{% endblock %}

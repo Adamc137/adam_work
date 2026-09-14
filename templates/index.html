@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My App</title>
+</head>
+<body>
+    <button onclick="onClick()">push me</button>
+    <form id="main-form" onsubmit="return checkForm(this)" method="post">
+        <label for="name">Name: </label>
+        <input type="text" name="name" placeholder="Enter your name" id="name"><br>
+        <label for="passsword">Password</label>
+        <input type="password" name="pass" placeholder="chek password" id="pass"><br>
+        <label for="repass">Repeat Password</label>
+        <input type="password" name="repass" placeholder="repeat password" id="repass"><br>
+        <span>male</span>
+        <input type="radio" name="state" id="male" value="men">
+        <label for="male">male</label>
+        <input type="radio" name="state" id="female" value="women">
+        <label for="female">female</label><br>
+        <span id="error" style="color: red;"></span><br>
+        <input type="submit"  name="submit" value="accept">
+    </form>
+    <script src="js/main.js"></script>
+</body>
+</html>

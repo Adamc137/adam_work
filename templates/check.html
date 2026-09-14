@@ -1,0 +1,158 @@
+{% extends "main.html" %} 
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 task-description p-4">
+            <h2 class="mb-4">Задача №1: Сумма чисел</h2>
+            <p>Напишите функцию <code>add(a, b)</code>, которая принимает два числа и возвращает их сумму.</p>
+            <div class="alert alert-info">
+                <strong>Пример:</strong><br>
+                <code>add(5, 3)</code> должен вернуть <code>8</code>
+            </div>
+            <hr>
+            <h5>Статус:</h5>
+            <div id="status-badge" class="badge bg-secondary">Ожидание проверки</div>
+        </div>
+
+        <div class="col-md-8 editor-section p-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <span>solution.py</span>
+                    <small>Python 3.10</small>
+                </div>
+                
+                <textarea id="user-code">def add(a, b):
+    # Напиши свой код здесь
+    return a + b</textarea>
+
+                <div class="card-footer bg-white">
+                    <button id="run-btn" class="btn btn-purple-filled btn-lg w-100" onclick="runPython()">
+                        Проверить решение
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <h5>Результат выполнения:</h5>
+                <pre id="output" class="p-3 border rounded bg-light"></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-purple-filled {
+        background-color: #a855f7;
+        color: white;
+        border: none;
+        padding: 15px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .btn-purple-filled:hover {
+        background-color: #9333ea;
+        color: white;
+        transform: translateY(-2px);
+    }
+    .btn-purple-filled:disabled {
+        background-color: #ccc;
+    }
+    #output {
+        min-height: 100px;
+        white-space: pre-wrap;
+    }
+    .CodeMirror {
+        height: 400px;
+        font-size: 16px;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+
+<script>
+    // 1. Инициализируем красивый редактор
+    var editor = CodeMirror.fromTextArea(document.getElementById("user-code"), {
+        mode: "python",
+        theme: "dracula",
+        lineNumbers: true,
+        indentUnit: 4
+    });
+
+    let pyodideInstance = null;
+
+    // 2. Функция загрузки Pyodide (чтобы не грузить каждый раз)
+    async function getPyodide() {
+        if (!pyodideInstance) {
+            pyodideInstance = await loadPyodide();
+        }
+        return pyodideInstance;
+    }
+
+    // 3. Основная логика проверки
+    async function runPython() {
+        const btn = document.getElementById("run-btn");
+        const out = document.getElementById("output");
+        const badge = document.getElementById("status-badge");
+        
+        btn.disabled = true;
+        btn.innerText = "⏳ Загрузка Python в браузере...";
+        out.innerText = "Инициализация...";
+
+        try {
+            const pyodide = await getPyodide();
+            const userCode = editor.getValue();
+
+            // Скрипт тестов (скрыт от пользователя)
+            const testScript = `
+import sys
+from io import StringIO
+
+# Перехватываем вывод print
+sys.stdout = StringIO()
+
+def run_tests():
+    try:
+        # Вставляем код пользователя
+        ${userCode.replace(/\n/g, '\n        ')}
+        
+        # Тестовые случаи
+        assert add(2, 2) == 4, "Тест 1 провален: add(2,2) должно быть 4"
+        assert add(-1, 5) == 4, "Тест 2 провален: add(-1,5) должно быть 4"
+        assert add(0, 0) == 0, "Тест 3 провален: add(0,0) должно быть 0"
+        
+        return "✅ Поздравляем! Все тесты пройдены успешно."
+    except AssertionError as e:
+        return f"❌ Ошибка в логике: {str(e)}"
+    except Exception as e:
+        return f"🔥 Ошибка выполнения: {str(e)}"
+
+run_tests()
+`;
+            let result = await pyodide.runPythonAsync(testScript);
+            
+            out.innerText = result;
+            if (result.includes("✅")) {
+                out.style.color = "green";
+                badge.className = "badge bg-success";
+                badge.innerText = "Решено";
+            } else {
+                out.style.color = "red";
+                badge.className = "badge bg-danger";
+                badge.innerText = "Ошибка";
+            }
+
+        } catch (err) {
+            out.innerText = "Критическая ошибка: " + err;
+            out.style.color = "red";
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "🚀 Проверить решение";
+        }
+    }
+</script>
+{% endblock %}
