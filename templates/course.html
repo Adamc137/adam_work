@@ -1,0 +1,62 @@
+{% extends "main.html" %}
+
+{% block title %} Развитие Инженерного мышление {% endblock %}
+
+{% block content %}
+<main>
+<aside class="aside">
+    <h2>Python engineering</h2>
+    <p>Курс по развитию инженерного мышления на языке Python. </p>
+    <hr>
+    <lesson id="lesson-list">
+
+    </lesson>
+</aside>
+<section class="content">
+    <h1>Добро пожаловать на курс по развитию инженерного мышления на языке Python!</h1>
+    <p>Этот курс предназначен для всех, кто хочет развить свои навыки инженерного мышления и научиться применять их в программировании на языке Python. В рамках курса мы рассмотрим различные аспекты инженерного мышления, такие как алгоритмы, оптимизация кода, проектирование программного обеспечения и решение сложных задач.</p>
+    <p>Каждый урок будет включать теоретическую часть, практические задания и примеры кода на языке Python. Вы сможете применить полученные знания на практике и улучшить свои навыки программирования.</p>
+    <p>Присоединяйтесь к нам и начните развивать свое инженерное мышление уже сегодня!</p>
+    <h1>Добро пожаловать на курс по развитию инженерного мышления на языке Python!</h1>
+    
+    <div class="video-container">
+        <div class="video-wrapper">
+            <iframe 
+                src="https://youtu.be/dQw4w9WgXcQ?si=YJjT9n2vCV8ljjST" 
+                title="Python Engineering Video" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        <p class="video-caption">🎥 Посмотрите вводный видеоурок по основам инженерного подхода.</p>
+    </div>
+
+    <div class="text-blocks">
+        <p>Этот курс предназначен для всех, кто хочет развить свои навыки...</p>
+        <p>Каждый урок будет включать теоретическую часть, практические задания...</p>
+    </div>
+    
+    <div class="cta-block">
+        <p>Присоединяйтесь к нам и начните развивать свое инженерное мышление уже сегодня!</p>
+        <a href="/check_code" class="btn btn-primary btn-lg">start</a>
+    </div>
+</section>
+
+    
+</main>
+<script>
+    const lissen=[
+        {name:"Урок 1. Введение в инженерное мышление", link:"/course/1"},
+        {name:"Урок 2. Алгоритмы и структуры данных", link:"/course/2"},
+        {name:"Урок 3. Оптимизация кода", link:"/course/3"},
+        {name:"Урок 4. Проектирование программного обеспечения", link:"/course/4"},
+        {name:"Урок 5. Решение сложных задач", link:"/course/5"},
+    ];
+    const lessonContainer =  document.getElementById("lesson-list");
+
+    lessonContainer.innerHTML = lissen.map(lesson =>
+        `<li><a href="${lesson.link}">${lesson.name}</a></li>`
+    ).join("");
+</script>
+{% endblock %}

@@ -1,0 +1,174 @@
+{% extends "main.html" %}
+
+{% block title %} Advanced Engineering Hub {% endblock %}
+
+{% block content %}
+<main class="d-flex">
+    <aside class="aside shadow-lg">
+        <div class="sidebar-header p-2">
+            <h3 class="fw-bold text-white"><i class="fa-solid fa-microchip me-2"></i>Lab Engine</h3>
+            <div class="progress mt-2" style="height: 6px; background: rgba(255,255,255,0.1);">
+                <div class="progress-bar bg-info" style="width: 40%"></div>
+            </div>
+            <small class="text-white-50">Прогресс курса: 40%</small>
+        </div>
+        <hr class="border-light opacity-25">
+        <ul id="lesson-list" class="list-unstyled">
+            </ul>
+        
+        <div class="mt-auto p-3 bg-dark rounded-3 mx-2 mb-3">
+            <small class="text-info d-block mb-1">Следующий дедлайн:</small>
+            <p class="small text-white mb-0">Завтра, 18:00 (МСК)</p>
+        </div>
+    </aside>
+
+    <section class="content flex-grow-1">
+        <div class="container-fluid px-lg-5">
+            
+            <div class="row align-items-center mb-5">
+                <div class="col-md-7">
+                    <span class="badge bg-primary px-3 mb-2">Модуль 3</span>
+                    <h1 class="display-4 fw-extrabold text-dark">Алгоритмическая сложность и О-нотация</h1>
+                    <p class="lead text-muted">Разбираем, как математика помогает писать код, который работает быстро на миллионах строк данных.</p>
+                </div>
+                <div class="col-md-5 text-end">
+                    <div class="p-3 bg-white rounded-4 shadow-sm border d-inline-block">
+                        <span class="text-muted d-block small">Сложность модуля:</span>
+                        <div class="text-warning">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-container mb-5 shadow-lg rounded-4 overflow-hidden border">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
+                <div class="p-3 bg-white d-flex justify-content-between align-items-center">
+                    <span class="fw-bold"><i class="fa-regular fa-file-video me-2"></i>Лекция #12: Анализ сложности</span>
+                    <a href="#" class="btn btn-link btn-sm text-decoration-none">Скачать конспект (PDF)</a>
+                </div>
+            </div>
+
+            <h3 class="fw-bold mb-4">Практические задачи дня:</h3>
+            <div class="row g-4 mb-5">
+                <div class="col-md-6">
+                    <div class="feature-card h-100 border-0 shadow-sm hover-up">
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="icon-box m-0 bg-soft-primary"><i class="fa-solid fa-square-root-alt"></i></div>
+                            <span class="text-success small fw-bold">+20 XP</span>
+                        </div>
+                        <h5>Математический анализ</h5>
+                        <p class="small text-muted">Докажите теорему о среднем значении для функции сложности алгоритма сортировки.</p>
+                        <a href="/check_code" class="btn btn-outline-primary btn-sm rounded-pill px-4">Решать</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card h-100 border-0 shadow-sm hover-up">
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="icon-box m-0 bg-soft-purple" style="background:rgba(168,85,247,0.1); color:#a855f7;"><i class="fa-solid fa-trophy"></i></div>
+                            <span class="text-success small fw-bold">+50 XP</span>
+                        </div>
+                        <h5>Олимпиадный вызов</h5>
+                        <p class="small text-muted">Задача "Рюкзак": оптимизируйте потребление памяти до O(W) в классическом динамическом программировании.</p>
+                        <a href="/check_code" class="btn btn-purple-filled btn-sm rounded-pill px-4">Вступить в бой</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-5 rounded-5 text-white text-center shadow-lg mb-5" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);">
+                <i class="fa-solid fa-rocket display-4 mb-4 text-info"></i>
+                <h2 class="fw-bold">Перейти к итоговому тестированию?</h2>
+                <p class="opacity-75 mb-4 mx-auto" style="max-width: 600px;">После прохождения всех тестов в этом модуле вы получите цифровой сертификат инженера 1-го уровня.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="/check_code" class="btn btn-info btn-lg px-5 fw-bold">Пройти тест</a>
+                    <button class="btn btn-outline-light btn-lg">Позже</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<style>
+    /* Улучшения для "Объема" */
+    .hover-up {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(0,0,0,0.05) !important;
+    }
+    .hover-up:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+    }
+
+    .fw-extrabold { font-weight: 800; }
+    
+    .bg-soft-primary { background-color: rgba(99,102,241,0.1); color: var(--primary-color); }
+    
+    .aside {
+        width: var(--sb-width);
+        position: fixed;
+        left: 0;
+        top: 56px; /* высота navbar */
+        bottom: 0;
+        background-color: #1e1b4b; /* Темно-синий для математики */
+        padding: 25px;
+        overflow-y: auto;
+        z-index: 100;
+    }
+
+    #lesson-list li {
+        margin-bottom: 10px;
+        transition: 0.3s;
+    }
+
+    #lesson-list li a {
+        color: rgba(255,255,255,0.8);
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    #lesson-list li:hover a {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateX(5px);
+    }
+
+    /* Адаптивность контента */
+    .content {
+        margin-left: var(--sb-width);
+        padding: 40px;
+        background-color: #f8fafc;
+        min-height: 100vh;
+    }
+
+    @media (max-width: 991px) {
+        .aside { display: none; }
+        .content { margin-left: 0; }
+    }
+</style>
+
+<script>
+    const allLessons = [
+        {name:"Анализ сложности O(n)", type:"math", link:"#"},
+        {name:"Сортировка слиянием", type:"code", link:"#"},
+        {name:"Бинарный поиск", type:"code", link:"#"},
+        {name:"Графы: Введение", type:"olympiad", link:"#"},
+        {name:"Итоговый проект", type:"pro", link:"#"},
+    ];
+    
+    const lessonContainer = document.getElementById("lesson-list");
+
+    lessonContainer.innerHTML = allLessons.map(item => `
+        <li>
+            <a href="${item.link}">
+                <i class="fa-solid fa-circle-check me-3 opacity-50 small"></i>
+                ${item.name}
+            </a>
+        </li>
+    `).join("");
+</script>
+{% endblock %}

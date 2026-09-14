@@ -1,0 +1,161 @@
+{% extends "main.html" %}
+
+{% block title %} Олимпиадное программирование | Спортивный код {% endblock %}
+
+{% block content %}
+<main>
+    <aside class="aside">
+        <div class="sidebar-header">
+            <h2 class="fw-bold"><i class="fa-solid fa-calculator me-2"></i>Olymp Lab</h2>
+            <p class="small opacity-75">Подготовка к ACM ICPC и школьным олимпиадам.</p>
+        </div>
+        <hr>
+        <ul id="lesson-list" class="list-unstyled">
+            </ul>
+    </aside>
+
+    <section class="content">
+        <div class="container-fluid">
+            
+            <div class="reveal active mb-5 p-4 border-start border-primary border-5 bg-white shadow-sm">
+                <h1 class="display-6 fw-bold">Алгоритмический тренинг</h1>
+                <p class="lead">Разбираем задачи уровня Hard: от динамического программирования до теории чисел.</p>
+            </div>
+
+            <div class="feature-card mb-5 bg-dark">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Olymp Solution" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="p-3">
+                    <p class="video-caption text-white m-0">
+                        <span class="badge bg-danger me-2">LIVE</span> 
+                        Разбор задачи: "Поиск кратчайшего пути в графе с отрицательными весами"
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card text-center h-100">
+                        <div class="icon-box mx-auto" style="background: rgba(168,85,247,0.1); color: var(--secondary-color);">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
+                        <h5>Графы</h5>
+                        <p class="small">DFS, BFS, алгоритм Дейкстры и остовные деревья.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card text-center h-100">
+                        <div class="icon-box mx-auto" style="background: rgba(99,102,241,0.1);">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h5>Динамика</h5>
+                        <p class="small">Классические задачи ДП: рюкзак, НОП, разбиение чисел.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="feature-card text-center h-100 border-warning border">
+                        <div class="icon-box mx-auto" style="background: rgba(255,193,7,0.1); color: #ffc107;">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h5>Оптимизация</h5>
+                        <p class="small">Сложность O(N log N), бинарный поиск по ответу и два указателя.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-card p-0 overflow-hidden shadow-lg border-0">
+                <div class="row g-0">
+                    <div class="col-md-8 p-5 bg-white">
+                        <h3>Готовы к соревнованию?</h3>
+                        <p>Вас ждет 5 задач разной сложности. Время на решение: 120 минут.</p>
+                        <ul class="text-muted small">
+                            <li>Лимит по времени: 1.0 сек</li>
+                            <li>Лимит по памяти: 256 Мб</li>
+                        </ul>
+                        <a href="/check_code" class="btn btn-dark btn-lg px-5 mt-3">Начать контест</a>
+                    </div>
+                    <div class="col-md-4 bg-primary d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-code text-white display-1 opacity-25"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<style>
+    /* Кастомизация Aside под Олимпиады */
+    .aside {
+        width: var(--sb-width);
+        position: fixed;
+        left: 0;
+        top: 56px; /* высота navbar */
+        bottom: 0;
+        background-color: #1e1b4b; /* Темно-синий для математики */
+        padding: 25px;
+        overflow-y: auto;
+        z-index: 100;
+    }
+
+    #lesson-list li {
+        margin-bottom: 10px;
+        transition: 0.3s;
+    }
+
+    #lesson-list li a {
+        color: rgba(255,255,255,0.8);
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    #lesson-list li:hover a {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateX(5px);
+    }
+
+    /* Адаптивность контента */
+    .content {
+        margin-left: var(--sb-width);
+        padding: 40px;
+        background-color: #f8fafc;
+        min-height: 100vh;
+    }
+
+    @media (max-width: 992px) {
+        .aside { width: 80px; padding: 10px; }
+        .aside p, .aside h2, .aside span { display: none; }
+        .content { margin-left: 80px; }
+    }
+</style>
+
+<script>
+    const olympTopics = [
+        {name:"Сложность алгоритмов", level:"Easy", link:"/olympiad/1"},
+        {name:"Сортировки и поиск", level:"Easy", link:"/olympiad/2"},
+        {name:"Графы: Обходы", level:"Medium", link:"/olympiad/3"},
+        {name:"Деревья отрезков", level:"Hard", link:"/olympiad/4"},
+        {name:"Геометрия", level:"Hard", link:"/olympiad/5"},
+    ];
+    
+    const lessonContainer = document.getElementById("lesson-list");
+
+    lessonContainer.innerHTML = olympTopics.map(topic => {
+        let badgeColor = topic.level === 'Hard' ? 'bg-danger' : (topic.level === 'Medium' ? 'bg-warning text-dark' : 'bg-success');
+        return `<li>
+            <a href="${topic.link}">
+                ${topic.name}
+                <span class="badge ${badgeColor} lvl">${topic.level}</span>
+            </a>
+        </li>`;
+    }).join("");
+</script>
+{% endblock %}
